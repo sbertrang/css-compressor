@@ -238,7 +238,7 @@ sub compress {
     $css =~ s!$RE_BORDER_TOP:none([;}])!border-top:0$1!gox;
     $css =~ s!$RE_BORDER_RIGHT:none([;}])!border-right:0$1!gox;
     $css =~ s!$RE_BORDER_BOTTOM:none([;}])!border-bottom:0$1!gox;
-    $css =~ s!$RE_BORDER_LEFT:none([;}])!border-right:0$1!gox;  # XXX: bug/typo in yuicompressor
+    $css =~ s!$RE_BORDER_LEFT:none([;}])!border-left:0$1!gox;
     $css =~ s!$RE_OUTLINE:none([;}])!outline:0$1!gox;
     $css =~ s!$RE_BACKGROUND:none([;}])!background:0$1!gox;
 
