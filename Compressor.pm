@@ -206,8 +206,12 @@ sub compress {
     # would become
     #     filter: chroma(color="#FFF");
     # which makes the filter break in IE.
+    # We also want to make sure we're only compressing #AABBCC patterns inside
+    # { }, not id selectors ( #FAABAC {} ).
+    # Further we want to avoid compressing invalid values (e.g. #AABBCCD to #ABCD).
+
     $css =~ s!
-        ([^"'= ][ ]*)
+        (=[ ]*?["']?)?
         \#
         ([0-9a-fA-F]) # a
         ([0-9a-fA-F]) # a
@@ -215,17 +219,18 @@ sub compress {
         ([0-9a-fA-F]) # b
         ([0-9a-fA-F]) # c
         ([0-9a-fA-F]) # c
+        \b
+        ([^{.])
       !
-        #$1.'#'.lc
-        #  ( lc $2.$4.$6 eq lc $3.$5.$7
-        #     ? $2.$4.$6
-        #     : $2.$3.$4.$5.$6.$7 )
-        # XXX: this is quite stupid and what I consider a bug but at the moment
-        #      we more care about compatibility
-        lc
-           ( lc $2.$4.$6 eq lc $3.$5.$7
-              ? $1.'#'.$2.$4.$6
-              : $1.'#'.$2.$3.$4.$5.$6.$7 )
+        ( $1 || '' ) ne ''
+          # keep as compression will break filters
+          ? $1.'#'.$2.$3.$4.$5.$6.$7.$8
+          # not a filter, safe to compress
+          : '#'.lc(
+                lc $2.$4.$6 eq lc $3.$5.$7
+                 ? $2.$4.$6
+                 : $2.$3.$4.$5.$6.$7
+             ).$8
       !gex;
 
     # border: none -> border:0
