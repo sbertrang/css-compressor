@@ -33,5 +33,7 @@ for my $file ( @files ) {
     s!([}])!\n$1!smg
         for $result, $target;
 
-    eq_or_diff $result => $target => "$file == $file.min";
+    my ( $name ) = $file =~ m!([^/]+)\z!;
+
+    eq_or_diff $result => $target => "compress($name) == $name.min";
 }
