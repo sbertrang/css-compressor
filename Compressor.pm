@@ -11,11 +11,14 @@ our $VERSION = '0.01';
 
 our $MARKER;
 
+# take package name, replace double colons with underscore and use that as
+# marker for search and replace operations
 BEGIN {
     $MARKER = uc __PACKAGE__;
     $MARKER =~ tr!:!_!s;
 }
 
+# build optimized regular expression variables ( foo -> [Ff][Oo][Oo] )
 my (
     $RE_BACKGROUND_POSITION,
     $RE_TRANSFORM_ORIGIN_MOZ,
@@ -209,7 +212,6 @@ sub compress {
     # We also want to make sure we're only compressing #AABBCC patterns inside
     # { }, not id selectors ( #FAABAC {} ).
     # Further we want to avoid compressing invalid values (e.g. #AABBCCD to #ABCD).
-
     $css =~ s!
         (=[ ]*?["']?)?
         \#
