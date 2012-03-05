@@ -280,16 +280,26 @@ CSS::Compressor - Perl extension for CSS minification
 
 =head1 DESCRIPTION
 
-This module is a port of Yahoo!s YUIcompressor to Perl which was needed to
-produce minified css on the fly using Perl based backend systems.
+This module is an implementation of the CSS parts of Yahoo! YUIcompressor in Perl.
+It was needed to produce minified css on the fly using Perl based backend systems.
 
 =head1 SEE ALSO
 
-L<http://developer.yahoo.com/yui/compressor/> - YUIcompressor project homepage
+=over 4
 
-L<https://github.com/yui/yuicompressor> - YUIcompressor source repository
+=item L<http://developer.yahoo.com/yui/compressor/>
 
-L<CSS::Packer> - an alternative, Perl-based CSS compressor
+YUIcompressor project homepage
+
+=item L<https://github.com/yui/yuicompressor>
+
+YUIcompressor source repository
+
+=item L<CSS::Packer>
+
+an alternative, Perl-based CSS compressor
+
+=back
 
 =head1 AUTHOR
 
