@@ -234,13 +234,13 @@ sub compress {
       !gex;
 
     # border: none -> border:0
-    $css =~ s!$RE_BORDER:none([;}])!border:0$1!gox;
-    $css =~ s!$RE_BORDER_TOP:none([;}])!border-top:0$1!gox;
-    $css =~ s!$RE_BORDER_RIGHT:none([;}])!border-right:0$1!gox;
-    $css =~ s!$RE_BORDER_BOTTOM:none([;}])!border-bottom:0$1!gox;
-    $css =~ s!$RE_BORDER_LEFT:none([;}])!border-left:0$1!gox;
-    $css =~ s!$RE_OUTLINE:none([;}])!outline:0$1!gox;
-    $css =~ s!$RE_BACKGROUND:none([;}])!background:0$1!gox;
+    $css =~ s! $RE_BORDER        :none ( [;}] ) !border:0$1!gox;
+    $css =~ s! $RE_BORDER_TOP    :none ( [;}] ) !border-top:0$1!gox;
+    $css =~ s! $RE_BORDER_RIGHT  :none ( [;}] ) !border-right:0$1!gox;
+    $css =~ s! $RE_BORDER_BOTTOM :none ( [;}] ) !border-bottom:0$1!gox;
+    $css =~ s! $RE_BORDER_LEFT   :none ( [;}] ) !border-left:0$1!gox;
+    $css =~ s! $RE_OUTLINE       :none ( [;}] ) !outline:0$1!gox;
+    $css =~ s! $RE_BACKGROUND    :none ( [;}] ) !background:0$1!gox;
 
     # shorter opacity IE filter
     $css =~ s!progid:DXImageTransform\.Microsoft\.Alpha\(Opacity=!alpha(opacity=!gi;
@@ -272,39 +272,26 @@ CSS::Compressor - Perl extension for CSS minification
 
 =head1 SYNOPSIS
 
-  use CSS::Compressor qw( reduce );
-  blah blah blah
+  use CSS::Compressor qw( minify );
+  ...
+  my $small = minify $css;
 
 =head1 DESCRIPTION
 
-Stub documentation for CSS::Compressor, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
-
-Blah blah blah.
-
-=head2 EXPORT
-
-None by default.
+This module is a port of Yahoo!s YUIcompressor to Perl which was needed to
+produce minified css on the fly using Perl based backend systems.
 
 =head1 SEE ALSO
 
-L<http://developer.yahoo.com/yui/compressor/>
+L<http://developer.yahoo.com/yui/compressor/> - YUIcompressor project homepage
 
-L<https://github.com/yui/yuicompressor>
+L<https://github.com/yui/yuicompressor> - YUIcompressor source repository
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
+L<CSS::Packer> - an alternative, Perl-based CSS compressor
 
 =head1 AUTHOR
 
-Simon Bertrang, E<lt>simon@ams7.corp.booking.comE<gt>
+Simon Bertrang, E<lt>simon.bertrang@booking.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
