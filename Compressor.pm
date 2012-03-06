@@ -33,12 +33,13 @@ my (
     $RE_BORDER_LEFT,
     $RE_OUTLINE,
     $RE_BACKGROUND,
+    $RE_ALPHA_FILTER,
 ) = map +(
-    join '' => map m![a-z]!
-       ? '['.ucfirst($_.$_).']'
+    join '' => map m![a-zA-Z]!
+       ? '['.ucfirst($_).lc($_).']'
        : '\\'.$_,
        split m//
-) => qw(
+) => qw[
     background-position
        moz-transform-origin
         ms-transform-origin
@@ -52,7 +53,8 @@ my (
     border-right
     outline
     background
-);
+    progid:DXImageTransform.Microsoft.Alpha(Opacity=
+];
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #  compress
@@ -80,7 +82,7 @@ sub compress {
         s/___${MARKER}_PRESERVE_CANDIDATE_COMMENT_([0-9]+)___/$comments[$1]/go,
 
         # minify alpha opacity in filter strings
-        s/progid:DXImageTransform\.Microsoft\.Alpha\(Opacity=/alpha(opacity=/gi,
+        s/$RE_ALPHA_FILTER/alpha(opacity=/go,
 
         '"___'.$MARKER.'_PRESERVED_TOKEN_'.(-1+push @tokens => $_).'___"'
        !sgxe;
@@ -89,7 +91,7 @@ sub compress {
 
         s/___${MARKER}_PRESERVE_CANDIDATE_COMMENT_([0-9]+)___/$comments[$1]/go,
 
-        s/progid:DXImageTransform\.Microsoft\.Alpha\(Opacity=/alpha(opacity=/gi,
+        s/$RE_ALPHA_FILTER/alpha(opacity=/go,
 
         '\'___'.$MARKER.'_PRESERVED_TOKEN_'.(-1+push @tokens => $_).'___\''
        !sgxe;
@@ -245,7 +247,7 @@ sub compress {
     $css =~ s! $RE_BACKGROUND    :none ( [;}] ) !background:0$1!gox;
 
     # shorter opacity IE filter
-    $css =~ s!progid:DXImageTransform\.Microsoft\.Alpha\(Opacity=!alpha(opacity=!gi;
+    $css =~ s!$RE_ALPHA_FILTER!alpha(opacity=!go;
 
     # Remove empty rules.
     $css =~ s![^{}/;]+\{\}!!g;
