@@ -3,7 +3,6 @@ Makefile.PL
 MANIFEST
 README
 t/load.t
-t/prod.t
 t/simple.t
 t/yui.t
 t/yui/_munge.js
