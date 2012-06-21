@@ -5,7 +5,7 @@ use warnings;
 
 use Exporter qw( import );
 
-our @EXPORT_OK = qw( compress );
+our @EXPORT_OK = qw( css_compress );
 
 our $VERSION = '0.01';
 
@@ -62,7 +62,7 @@ my (
 #  IN: 1 uncompressed CSS
 # OUT: 1 compressed CSS
 
-sub compress {
+sub css_compress {
     my ( $css ) = @_;
     my @comments,
     my @tokens;

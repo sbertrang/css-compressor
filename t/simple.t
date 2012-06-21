@@ -3,10 +3,10 @@ use Test::More
     tests => 2;
 
 BEGIN {
-    use_ok('CSS::Compressor' => qw( compress ) );
+    use_ok('CSS::Compressor' => qw( css_compress ) );
 }
 
-my $result = compress(<<CSS);
+my $result = css_compress(<<CSS);
 some foo {
     color: red; /* with comments */
 }

@@ -3,14 +3,14 @@ our @files;
 
 use FindBin;
 
-BEGIN { @files = glob "$FindBin::Bin/yui/*.css" }
+BEGIN { @files = grep +( !m! \b dataurl-base64-linebreakindata.css \E\b !x ), glob "$FindBin::Bin/yui/*.css" }
 
 use Test::Differences;
 use Test::More
     tests => 1 + @files;
 
 BEGIN {
-    use_ok( 'CSS::Compressor' => qw( compress ) );
+    use_ok( 'CSS::Compressor' => qw( css_compress ) );
 }
 
 diag "yui test files: @files\n";
@@ -26,7 +26,7 @@ for my $file ( @files ) {
     my $target = do { local $/; <$fh> };
     close $fh;
 
-    my $result = compress( $source );
+    my $result = css_compress( $source );
 
     # make diffs readable
     s!([{;])!$1\n!smg,
@@ -35,5 +35,5 @@ for my $file ( @files ) {
 
     my ( $name ) = $file =~ m!([^/]+)\z!;
 
-    eq_or_diff $result => $target => "compress($name) == $name.min";
+    eq_or_diff $result => $target => "css_compress($name) == $name.min";
 }
