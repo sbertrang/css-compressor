@@ -309,9 +309,15 @@ an alternative, Perl-based CSS compressor
 
 =back
 
+=head1 ACKNOWLEDGMENT
+
+This module was originally developed for Booking.com. With approval from
+Booking.com, this module was generalized and put on CPAN, for which the author
+would like to express his gratitude.
+
 =head1 AUTHOR
 
-Simon Bertrang, E<lt>simon.bertrang@booking.comE<gt>
+Simon Bertrang, E<lt>janus@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

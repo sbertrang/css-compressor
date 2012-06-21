@@ -2,14 +2,18 @@ NAME
     CSS::Compressor - Perl extension for CSS minification
 
 SYNOPSIS
-      use CSS::Compressor qw( minify );
+      use CSS::Compressor qw( css_compress );
       ...
-      my $small = minify $css;
+      my $small = css_compress $css;
 
 DESCRIPTION
     This module is an implementation of the CSS parts of Yahoo!
     YUIcompressor in Perl. It was needed to produce minified css on the fly
     using Perl based backend systems.
+
+FUNCTIONS
+  css_compress( $source )
+    Takes the stylesheet source, minifies it and returns the result string.
 
 SEE ALSO
     <http://developer.yahoo.com/yui/compressor/>
@@ -21,8 +25,13 @@ SEE ALSO
     CSS::Packer
         an alternative, Perl-based CSS compressor
 
+ACKNOWLEDGMENT
+    This module was originally developed for Booking.com. With approval from
+    Booking.com, this module was generalized and put on CPAN, for which the
+    author would like to express his gratitude.
+
 AUTHOR
-    Simon Bertrang, <simon.bertrang@booking.com>
+    Simon Bertrang, <janus@cpan.org>
 
 COPYRIGHT AND LICENSE
     Copyright (C) 2012 by Simon Bertrang
