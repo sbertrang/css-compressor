@@ -276,14 +276,20 @@ CSS::Compressor - Perl extension for CSS minification
 
 =head1 SYNOPSIS
 
-  use CSS::Compressor qw( minify );
+  use CSS::Compressor qw( css_compress );
   ...
-  my $small = minify $css;
+  my $small = css_compress $css;
 
 =head1 DESCRIPTION
 
 This module is an implementation of the CSS parts of Yahoo! YUIcompressor in Perl.
 It was needed to produce minified css on the fly using Perl based backend systems.
+
+=head1 FUNCTIONS
+
+=head2 css_compress( $source )
+
+Takes the stylesheet source, minifies it and returns the result string.
 
 =head1 SEE ALSO
 
