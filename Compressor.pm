@@ -7,7 +7,7 @@ use Exporter qw( import );
 
 our @EXPORT_OK = qw( css_compress );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 our $MARKER;
 
