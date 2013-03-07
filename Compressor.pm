@@ -101,6 +101,7 @@ sub css_compress {
     # ! in the first position of the comment means preserve
     # so push to the preserved tokens while stripping the !
     0 == index $_->[1] => '!'
+      and -1 == index $_->[1] => '! @noflip'
       and
         $css =~ s!___${MARKER}_PRESERVE_CANDIDATE_COMMENT_$_->[0]___!
                  '___'.$MARKER.'_PRESERVED_TOKEN_'.(-1+push @tokens => $_->[1]).'___'!e
