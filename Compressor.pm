@@ -152,6 +152,16 @@ sub css_compress {
               $_
              !xe;
 
+    # Similarly, don't strip spaces around addition within calc(10px + 10px) -
+    # swap out any calc()-related plus symbol to a token, and then swap back.
+    # Recursive regular expression is needed to match nested brackets, for
+    # example: `calc(10px + var(--foo))`.
+    $css =~ s!calc(\((?:[^()]|(?1))*\))!
+              $_ = $1,
+              s/\+/___${MARKER}_CALCADDITIONSYMBOL___/go,
+              "calc$_"
+             !gxe;
+
     # Remove spaces before the things that should not have spaces before them.
     $css =~ s/ +([!{};:>+()\],])/$1/g;
 
@@ -174,6 +184,9 @@ sub css_compress {
 
     # Remove the spaces after the things that should not have spaces after them.
     $css =~ s/([!{},;:>+(\[]) +/$1/g;
+
+    # Swap back the plus sign from calc() addition.
+    $css =~ s!___${MARKER}_CALCADDITIONSYMBOL___!+!go;
 
     # Replace 0.6 to .6, but only when preceded by :
     $css =~ s!:0+\.([0-9]+)!:.$1!g;
