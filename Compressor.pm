@@ -180,7 +180,9 @@ sub css_compress {
 
     # Put the space back in some cases, to support stuff like
     # @media screen and (-webkit-min-device-pixel-ratio:0){
+    # @supports((display: flex) or (display: -webkit-flex))
     $css =~ s! \b and \( !and (!gx;
+    $css =~ s! \b or \( !or (!gx;
 
     # Remove the spaces after the things that should not have spaces after them.
     $css =~ s/([!{},;:>+(\[]) +/$1/g;
