@@ -73,6 +73,11 @@ sub css_compress {
                ( -1 + push @comments => $1 ).'___*/'
              !sogex;
 
+    # preserve urls to prevent breaking inline SVG for example
+    $css =~ s! ( url \( (?: [^()] | (?1) )* \) ) !
+        '___'.$MARKER.'_PRESERVED_TOKEN_'.(-1+push @tokens => $1).'___'
+        !gxe;
+
     # preserve strings so their content doesn't get accidentally minified
     $css =~ s! " ( [^"\\]*(?:\\.[^"\\]*)* ) " !
         $_ = $1,
