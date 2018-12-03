@@ -74,7 +74,7 @@ sub css_compress {
              !sogex;
 
     # preserve urls to prevent breaking inline SVG for example
-    $css =~ s! ( url \( (?: [^()] | (?1) )* \) ) !
+    $css =~ s! ( url \( ( (?: [^()]++ | \( (?2) \) )*+ ) \) ) !
         '___'.$MARKER.'_PRESERVED_TOKEN_'.(-1+push @tokens => $1).'___'
         !gxe;
 
