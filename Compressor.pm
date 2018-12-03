@@ -316,7 +316,7 @@ Takes the stylesheet source, minifies it and returns the result string.
 
 =over 4
 
-=item L<http://developer.yahoo.com/yui/compressor/>
+=item L<https://github.com/YUICompressor-NET/YUICompressor.NET>
 
 YUIcompressor project homepage
 
