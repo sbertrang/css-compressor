@@ -10,6 +10,7 @@ WriteMakefile(
     },
     ABSTRACT_FROM  => 'Compressor.pm',
     AUTHOR         => 'Simon Bertrang <janus@cpan.org>',
+    LICENSE        => 'perl_5',
     META_MERGE     => {
         resources      => {
             license        => 'http://dev.perl.org/licenses/',
