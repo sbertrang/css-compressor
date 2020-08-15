@@ -16,7 +16,7 @@ FUNCTIONS
     Takes the stylesheet source, minifies it and returns the result string.
 
 SEE ALSO
-    <https://github.com/YUICompressor-NET/YUICompressor.NET>
+    <https://yui.github.io/yuicompressor/>
         YUIcompressor project homepage
 
     <https://github.com/yui/yuicompressor>
